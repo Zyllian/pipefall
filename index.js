@@ -10,4 +10,8 @@
   };
 
   now.addEventListener("click", play);
+
+  for (let pipe of document.querySelectorAll(".pipe")) {
+    pipe.addEventListener("click", play);
+  }
 })();
