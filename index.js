@@ -28,7 +28,7 @@
     if (playAtRandom.checked) {
       timeSincePlay += 1;
       if (timeSincePlay >= 60) {
-        const v = random(randomChance.value);
+        const v = random(randomChance.value * 60);
         if (v === 0) {
           play();
           timeSincePlay = 0;
