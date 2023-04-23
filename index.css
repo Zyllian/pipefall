@@ -10,3 +10,7 @@ body {
 .center-contents {
   text-align: center;
 }
+
+.small {
+  font-size: 0.7rem;
+}
