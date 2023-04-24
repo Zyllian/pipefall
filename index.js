@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  const fallKey = "falls";
+
   const pipefall = document.getElementById("pipefall");
   const now = document.getElementById("play-now");
   const playAtRandom = document.getElementById("play-at-random");
@@ -8,9 +10,31 @@
 
   playAtRandom.checked = false;
 
+  function getFalls() {
+    let falls;
+    try {
+      falls = parseInt(localStorage.getItem(fallKey));
+    } catch {
+      falls = 0;
+    }
+    if (Number.isNaN(falls)) {
+      falls = 0;
+    }
+    return falls;
+  }
+
+  const updateFalls = () => {
+    const falls = getFalls();
+    for (const fall of document.querySelectorAll(".fall-count")) {
+      fall.innerText = falls;
+    }
+  };
+
   const play = () => {
-    console.log("pipefall!");
     pipefall.play();
+    const falls = getFalls() + 1;
+    localStorage.setItem(fallKey, falls);
+    updateFalls();
   };
 
   now.addEventListener("click", play);
@@ -38,4 +62,5 @@
       timeSincePlay = 0;
     }
   }, 1000);
+  updateFalls();
 })();
